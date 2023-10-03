@@ -1,17 +1,32 @@
 import { useState } from "react";
+
+import { FieldValue, FieldValues, useForm } from "react-hook-form";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./components/ui/table";
+
 function App() {
-  const names: string[] = ["zhang san", "lisi", "wangwu"];
-  const [formData, setFormData] = useState("");
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    // console.log(event.currentTarget.lisi.value);
-    // const formData = new FormData(event.currentTarget);
-    // console.log(formData.get("lisi"));
+  const names = ["zhang san", "lisi", "wangwu"];
+  const [formData, setFormData] = useState<{ [x: string]: any }[]>([]);
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data: FieldValues) => {
+    // console.log(data);
+    const results = names.map((name) => ({
+      [name]: data[name],
+    }));
+    setFormData([...results]);
+    reset();
   };
+
   return (
     <>
       <div className='text-3xl text-center mt-10'>hello moon</div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className='ml-2 grid gap-3 mb-6 md:grid-cols-2'>
           {names.map((name, index) => (
             <div key={index}>
@@ -21,9 +36,8 @@ function App() {
               <input
                 type='number'
                 id={name}
+                {...register(name)}
                 className=' border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 '
-                value={formData}
-                onChange={(e) => setFormData(e.target.value)}
               />
             </div>
           ))}
@@ -35,6 +49,23 @@ function App() {
           Submit
         </button>
       </form>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>姓名</TableHead>
+            <TableHead>分数</TableHead>
+            <TableHead>排名</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {formData.map((obj) => (
+            <TableRow key={Object.keys(obj)[0]}>
+              <TableCell>{Object.keys(obj)[0]}</TableCell>
+              <TableCell>{Object.values(obj)[0]}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </>
   );
 }
