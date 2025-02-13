@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Form from "@/components/form";
 import Flight from "@/components/flight";
+import Table from "@/components/table";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <div className="text-3xl mt-8">hello moon</div>
       <Form />
       <Flight />
+      <Table />
     </div>
   );
 }
