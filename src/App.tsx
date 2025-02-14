@@ -2,6 +2,7 @@ import { useState } from "react";
 import Form from "@/components/form";
 import Flight from "@/components/flight";
 import Table from "@/components/table";
+import Bar from "@/components/bar";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Form />
       <Flight />
       <Table />
+      <Bar />
     </div>
   );
 }
