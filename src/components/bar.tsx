@@ -21,7 +21,7 @@ function Progress() {
   }, [])
   return (
     <div className="h-2 bg-blue-100">
-      <div className={`h-full bg-blue-500 origin-left transition-transform duration-[2000ms] ${start ? 'scale-x-100' : 'scale-x-0'}`}>
+      <div className={`h-full bg-blue-500 origin-left transition-transform duration-1000 ${start ? 'scale-x-100' : 'scale-x-0'}`}>
       </div>
     </div >
   )
