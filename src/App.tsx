@@ -4,6 +4,7 @@ import Flight from "@/components/flight";
 import Table from "@/components/table";
 import Bar from "@/components/bar";
 import PerBar from "@/components/perbar";
+import TemConvert from "./components/temConvert";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Table />
       <Bar />
       <PerBar />
+      <TemConvert />
     </div>
   );
 }
