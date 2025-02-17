@@ -5,7 +5,7 @@ import Table from "@/components/table";
 import Bar from "@/components/bar";
 import PerBar from "@/components/perbar";
 import TemConvert from "./components/temConvert";
-
+import Mortgage from "./components/mortgate";
 function App() {
   return (
     <div className="flex flex-col gap-4 justify-center min-w-full items-center">
@@ -16,6 +16,7 @@ function App() {
       <Bar />
       <PerBar />
       <TemConvert />
+      <Mortgage />
     </div>
   );
 }
