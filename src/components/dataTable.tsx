@@ -218,12 +218,32 @@ const users = [
   }
 ]
 type User = (typeof users)[number]
+type SortField = "id" | "name" | "age" | "occupation"
+type SortDirection = "asc" | "desc"
+
 const columns = [
   { label: 'ID', key: 'id' },
   { label: 'Name', key: 'name' },
   { label: 'Age', key: 'age' },
   { label: 'Occupation', key: 'occupation' },
 ]
+
+function sortUsers(usersList: User[], field: SortField | null, direction: SortDirection) {
+  const usersClone = usersList.slice()
+  switch (field) {
+    case "id":
+    case "age": {
+      return usersClone.sort((a, b) => direction === "asc" ? a[field] - b[field] : b[field] - a[field])
+    }
+    case "name":
+    case "occupation": {
+      return usersClone.sort((a, b) => direction === "asc" ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field]))
+    }
+    default: {
+      return usersClone
+    }
+  }
+}
 function paginateUsers(
   usersList: Array<User>,
   page: number,
@@ -240,18 +260,29 @@ function paginateUsers(
 export default function DataTable() {
   const [page, setPage] = useState(1)
   const [pageSize, setPageSize] = useState(5)
+  const [sortField, setSortField] = useState<SortField | null>(null)
+  const [sortDir, setSortDir] = useState<SortDirection>("asc")
+  const sortedUsers = sortUsers(users, sortField, sortDir)
   const { totalPages, pageUsers } = paginateUsers(
-    users,
+    sortedUsers,
     page,
     pageSize,
   );
-
+  function handleSort(key: SortField) {
+    if (sortField !== key) {
+      setSortField(key)
+    } else {
+      setSortDir(sortDir === "asc" ? "desc" : "asc")
+    }
+    setPage(1)
+  }
   return (
     <div>
       <table>
         <thead>
           <tr>
-            {columns.map(({ label, key }) => <th key={key}>{label}</th>)}
+            {columns.map(({ label, key }) => <th key={key}><button onClick={() => handleSort(key)}>{label}</button></th>)}
+
           </tr>
         </thead>
         <tbody>
