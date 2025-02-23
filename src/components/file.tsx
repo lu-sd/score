@@ -56,24 +56,29 @@ export default function File() {
 }
 
 function RecursiveList({ data }: { data: fileData[] }) {
-  const [expanded, setExpanded] = useState(false)
   if (!data || !data.length) {
     return null
   }
   return (
-    <ul>
-      {data.map((item) => {
-        const isDire = Boolean(item.children)
-        return (<li key={item.id}>
-          <button onClick={() => {
-            if (!isDire) {
-              return
-            }
-            setExpanded(!expanded)
-          }}><span>{item.name}</span>{isDire && <> {expanded ? '-' : "+"}</>}</button>
-          {item.children && <RecursiveList data={item.children} />}
-        </li>)
-      })}
+    <ul className="pl-4">
+      {data.map((item) =>
+        < FileObject key={item.id} item={item} />)}
     </ul>
   )
+}
+function FileObject({ item }: { item: fileData }) {
+  const [expanded, setExpanded] = useState(false)
+  const isDire = Boolean(item.children)
+  return (<li>
+    <button
+      className={`${isDire ? " text-red-400 cursor-pointer font-bold" : "cursor-none"}`}
+      onClick={() => {
+        if (!isDire) {
+          return
+        }
+        setExpanded(!expanded)
+      }}><span>{item.name}</span>{isDire && <> {expanded ? '-' : "+"}</>}</button>
+    {item.children && expanded && <RecursiveList data={item.children} />}
+  </li>)
+
 }
