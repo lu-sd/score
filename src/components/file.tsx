@@ -50,12 +50,14 @@ export default function File() {
   return (
     <div>
       <div className="text-blue-400">This is File Explorer </div>
-      <RecursiveList data={data} />
+      <ul>
+        <RecursiveList data={data} level={1} />
+      </ul>
     </div>
   )
 }
 
-function RecursiveList({ data }: { data: fileData[] }) {
+function RecursiveList({ data, level }: { data: fileData[], level: number }) {
   if (!data || !data.length) {
     return null
   }
@@ -65,16 +67,16 @@ function RecursiveList({ data }: { data: fileData[] }) {
   nonDir.sort((a, b) => a.name.localeCompare(b.name))
   const items = [...dir, ...nonDir]
   return (
-    <ul className="pl-4">
+    <>
       {items.map((item) =>
-        < FileObject key={item.id} item={item} />)}
-    </ul>
+        < FileObject key={item.id} item={item} level={level} />)}
+    </>
   )
 }
-function FileObject({ item }: { item: fileData }) {
+function FileObject({ item, level }: { item: fileData, level: number }) {
   const [expanded, setExpanded] = useState(false)
   const isDire = Boolean(item.children)
-  return (<li>
+  return (<li style={{ paddingLeft: (level - 1) * 16 }}>
     <button
       className={`${isDire ? " text-red-400 cursor-pointer font-bold" : "cursor-none"}`}
       onClick={() => {
@@ -84,7 +86,7 @@ function FileObject({ item }: { item: fileData }) {
         setExpanded(!expanded)
       }}><span>{item.name}</span>{isDire && <> {expanded ? '-' : "+"}</>}</button>
     {/* This recursion allows the component to display nested levels of items without knowing in advance how deep the structure goes. */}
-    {item.children && item.children.length > 0 && expanded && <RecursiveList data={item.children} />}
+    {item.children && item.children.length > 0 && expanded && <RecursiveList data={item.children} level={level + 1} />}
   </li>)
 
 }
