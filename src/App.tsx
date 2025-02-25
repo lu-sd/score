@@ -10,10 +10,12 @@ import Clock from "./components/clock"
 import DataTable from "./components/dataTable";
 import Dice from "./components/dice.tsx"
 import File from "./components/file"
+import GreenLight from "./components/greenLight.tsx";
 function App() {
   return (
     <div className="flex flex-col gap-4 justify-center min-w-full items-center">
       <div className="text-3xl mt-8">hello moon</div>
+      <GreenLight />
       <File />
       <Dice />
       <DataTable />
