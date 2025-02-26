@@ -12,8 +12,6 @@ export default function GreenLight() {
   function deactivateCells() {
     setIsDeactivating(true);
     const timer = setInterval(() => {
-      // Use the callback version of setOrder to ensure
-      // we are reading the most updated order value.
       setOrder((origOrder) => {
         // Make a clone to avoid mutation of the orders array.
         const newOrder = origOrder.slice();
