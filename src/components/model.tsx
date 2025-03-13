@@ -34,10 +34,10 @@ function TrueM({ open = false, onClose, title, children }: Prop) {
   }
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg flex gap-4 flex-col items-center">
+      <div className="bg-white p-6 rounded-lg shadow-lg flex gap-4 flex-col items-center relative">
         <h2 className="font-semibold" >{title}</h2>
         <div>{children}</div>
-        <button onClick={onClose}>Close</button>
+        <button className="absolute top-2 right-2 " onClick={onClose}>Close</button>
       </div>
     </div>
   )
