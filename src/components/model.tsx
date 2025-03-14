@@ -33,7 +33,7 @@ function TrueM({ open = false, onClose, title, children }: Prop) {
     return null
   }
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-10">
       <div className="bg-white p-6 rounded-lg shadow-lg flex gap-4 flex-col items-center relative">
         <h2 className="font-semibold" >{title}</h2>
         <div>{children}</div>
