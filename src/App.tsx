@@ -14,9 +14,11 @@ import GreenLight from "./components/greenLight.tsx";
 import CssCom from "./components/css.tsx";
 import LikeButton from "./components/likeButton.tsx";
 import Model from "./components/model.tsx";
+import Todos from "./components/todos.tsx";
 function App() {
   return (
     <div className="flex flex-col gap-4 justify-center min-w-full items-center">
+      <Todos />
       <Model />
       <LikeButton />
       <CssCom />

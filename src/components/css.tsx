@@ -3,7 +3,7 @@ export default function CssCom() {
     {/* p-10 makes the div itself bigger, adding space inside it. */}
     <div className="group  border border-red-500 p-10">
       <button className="bg-blue-500 text-white p-4">Hover me</button>
-      <p className="absociwlute hidden group-hover:block bg-gray-700 text-white p-2">
+      <p className="absolute hidden group-hover:block bg-gray-700 text-white p-2">
         I appear when hovering over the parent!
       </p>
     </div>
