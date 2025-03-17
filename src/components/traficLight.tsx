@@ -30,7 +30,7 @@ export default function TrafficLight() {
     return () => { clearTimeout(timerId) }
   }, [currentColor])
 
-  return (<div>
+  return (<div className="flex gap-4 bg-black rounded-l p-2 ">
     {Object.keys(config).map((color) => {
       const key = color as keyof typeof config
       return <Light key={color} backgroundColor={color === currentColor ? config[key].backgroundColor : ""} />
@@ -40,8 +40,7 @@ export default function TrafficLight() {
 
 function Light({ backgroundColor }: { backgroundColor: string }) {
 
-  return (<div>
-    {backgroundColor}
-  </div>)
+  return (<div className="bg-gray-400 h-3 w-3 rounded-full" style={{ backgroundColor }}>
+  </div >)
 
 }
