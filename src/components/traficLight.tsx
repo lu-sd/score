@@ -40,6 +40,7 @@ export default function TrafficLight() {
 
 function Light({ backgroundColor }: { backgroundColor: string }) {
 
+  // In React,  use camelCase (backgroundColor instead of background-color):
   return (<div className="bg-gray-400 h-3 w-3 rounded-full" style={{ backgroundColor }}>
   </div >)
 
