@@ -5,7 +5,7 @@ export default function Bar() {
   return (
     <div>
       <div className="text-blue-400">
-        this is progress bar</div>
+        This is progress bar </div>
       <button onClick={() => setBar(bar + 1)}>Add</button>
       <div className="flex flex-col gap-2">
         {Array(bar).fill(null).map((_, idx) => <Progress key={idx} />)}
