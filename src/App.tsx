@@ -19,6 +19,10 @@ import TrafficLight from "./components/traficLight.tsx";
 function App() {
   return (
     <div className="flex flex-col gap-4 justify-center min-w-full items-center">
+      <div className="m-4 grid grid-rows-[0fr] rounded-md bg-blue-200 bg-opacity-40 p-4 transition-all duration-500 ease-in-out hover:grid-rows-[1fr]">
+        <div className="overflow-hidden">Expandable content</div>
+      </div>
+
       <TrafficLight />
       <Todos />
       <Model />
